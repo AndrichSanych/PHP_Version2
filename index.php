@@ -1,24 +1,6 @@
 <?php
-// Database credentials
-$host = 'localhost';
-$dbname = 'local.pv221.com';
-$username = 'root';
-$password = '';
-
-// Connection string
-$dsn = "mysql:host=$host;dbname=$dbname";
-
-// Attempt to connect
-try {
-    $pdo = new PDO($dsn, $username, $password);
-    // Set PDO to throw exceptions on errors
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+include_once "connection_database.php";
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -28,12 +10,14 @@ try {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <main>
+
     <div class="container">
         <h1>Користувачі</h1>
+        <a class="btn btn-success" href="/create.php">Додати</a>
         <table class="table">
             <thead>
             <tr>
@@ -45,17 +29,6 @@ try {
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>
-                    <img src="https://images.unian.net/photos/2023_11/1699042205-1462.jpg?r=563101"
-                         width="150"
-                         alt="Іванка">
-                </td>
-                <td>Супер Іванка</td>
-                <td>+3098 78 34 321</td>
-                <td>ivanka@gmail.com</td>
-            </tr>
             <?php
             $sql = 'SELECT * FROM tbl_users';
             foreach ($pdo->query($sql) as $row) {
@@ -79,11 +52,12 @@ try {
                 ";
             }
             ?>
-
             </tbody>
         </table>
     </div>
 </main>
-<script src="js/bootstrap.bundle.min.js"></script>
+
+
+<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
