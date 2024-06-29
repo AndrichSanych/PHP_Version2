@@ -1,6 +1,6 @@
 <?php
-include_once "config.php";
-
+//include_once 'config.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 // Connection string
 $dsn = DB_DRIVER.":host=".DB_HOST.";dbname=".DB_NAME;
 
